@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+    <div class="new-div"><form action="{% url 'login' %}" method="post">
+        {% csrf_token %}
+        <label for="Login">Username:</label>
+        <input id='Login' type="text" name="Login" required><br>
+        <label for="password">Password</label>
+        <input id="password" type="password" name="password" required>
+        <p><input type="submit" value="Sing-up"></p>
+        </form>
+    </div>
+<style>
+    .new-div{
+        margin-left: auto;
+    }
+</style>
+</body>
+</html>

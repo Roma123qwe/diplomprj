@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     'notification',
     'registration',
     'rest_framework',
+    'rest_framework.authtoken'
 ]
 
 MIDDLEWARE = [
