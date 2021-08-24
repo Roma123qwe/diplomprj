@@ -1,0 +1,21 @@
+version: "3"
+
+services: 
+  web:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    container_name: notific_proj
+    volumes: 
+      - ./calender:/calender
+    ports:
+      - "5000:8000"
+    depends_on:
+      - db
+    command: ["sh", "-c", "python3 manage.py migrate && python3 manage.py runserver 0.0.0.0:8000"]
+    env_file: db_keys.txt
+
+  db:
+    image: postgres:latest
+    container_name: my_db
+    env_file: db_keys.txt
