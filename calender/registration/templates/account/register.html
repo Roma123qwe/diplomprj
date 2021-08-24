@@ -5,6 +5,7 @@
     <title>Title</title>
 </head>
 <body>
+    {{ errors }}
     <div class="new-div"><form action="{% url 'registration' %}" method="post">
         {% csrf_token %}
         <label for="username">Username:</label>
