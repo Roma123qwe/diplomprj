@@ -27,8 +27,8 @@ class EventList(ListAPIView):
         if 'date_from_input' in dates.keys():
             self.queryset = Event.objects.filter(user_id=request.user.id, date_from=dates['date_from_input'])
         if 'date_to_input' in dates.keys():
-            self.queryset = Event.objects.filter(data_from_gte=datetime.datetime.strftime(dates['date_from_input'],'%Y-%m-%d'), \
-                data_from__lte=(dates['date_to_input'], '%Y-%m-%d'), \
+            self.queryset = Event.objects.filter(data_from_gte=datetime.datetime.strftime(dates['date_from_input'],'%Y-%m-%d'),
+                data_from__lte=(dates['date_to_input'], '%Y-%m-%d'),
                 user_id=request.user.id)
         serializer = self.get_serializer(self.queryset, many=True)
         for e in serializer.data:

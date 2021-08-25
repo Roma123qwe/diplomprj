@@ -68,7 +68,7 @@ WSGI_APPLICATION = 'calender.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'mydatabase',
+        'NAME': 'database',
     }
 }
 
@@ -155,3 +155,4 @@ CELERY_BEAT_SCHEDULE = {
         "schedule": 60.0,
     },
 }
+AUTH_USER_MODEL = 'registration.MyUser'
