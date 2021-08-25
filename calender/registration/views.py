@@ -20,7 +20,7 @@ def register(request):
 def login_user(request):
     if request.method == 'POST':
         user = authenticate(
-            username=request.POST['Login'],
+            username=request.POST['username'],
             password=request.POST['password']
             )
         if user is not None:
