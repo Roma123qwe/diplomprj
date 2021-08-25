@@ -128,10 +128,23 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ]
 }
-REST_FRAMEWORK = {
-}
+
+
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'djangomyprj@gmail.com'
 EMAIL_HOST_PASSWORD = 'qaz1wsx2edc3'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+
+
+CELERY_BROKER_URL = 'redis://redis:6379'
+CELERY_RESULT_BACKEND  = 'redis://redis:6379'
+CELERY_ACCEPT_CONTENT = ['json'] 
+CELERY_TASK_SERIALIZER = 'json'
+
+CELERY_BEAT_SCHEDULE = {
+    "task_natification": {
+        "task": "notificate",
+        "schedule": 60.0,
+    },
+}

@@ -12,6 +12,7 @@ services:
       - "5000:8000"
     depends_on:
       - db
+      - redis
     command: ["sh", "-c", "python3 manage.py migrate && python3 manage.py runserver 0.0.0.0:8000"]
     env_file: db_keys.txt
 
@@ -19,3 +20,22 @@ services:
     image: postgres:latest
     container_name: my_db
     env_file: db_keys.txt
+
+  redis:
+    image: redis:latest
+    container_name: redis
+
+  celery:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: celery_wb
+    volumes:
+      - ./calender:/calender
+    depends_on:
+      - redis
+    env_file:
+      - db_keys.txt
+    ports:
+      - "5555:5555"
+    command: bash -c "celery -A calender worker -l info -B & celery flower -A calender"
