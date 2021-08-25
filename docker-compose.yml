@@ -9,7 +9,7 @@ services:
     volumes: 
       - ./calender:/calender
     ports:
-      - "5000:8000"
+      - "8000:8000"
     depends_on:
       - db
       - redis
@@ -19,6 +19,8 @@ services:
   db:
     image: postgres:latest
     container_name: my_db
+    ports: 
+      - '5432:5432'
     env_file: db_keys.txt
 
   redis:
@@ -33,9 +35,11 @@ services:
     volumes:
       - ./calender:/calender
     depends_on:
+      - db
       - redis
+      - web
     env_file:
       - db_keys.txt
     ports:
       - "5555:5555"
-    command: bash -c "celery -A calender worker -l info -B & celery flower -A calender"
+    command: bash -c "celery -A calender worker -l info -B"
